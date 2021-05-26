@@ -1,0 +1,30 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import promiseMiddleware from 'redux-promise';
+
+import App from './Components/App';
+import reducer from '../Reducers';
+
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore)
+
+ReactDOM.render(
+  <Provider store={createStoreWithMiddleware(reducer)}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
+
+/*CLOSURE FUNCTIONS
+  function add(a){
+    return function(b){
+      return function (c){
+        return a+b+c;
+      }
+    }
+  }
+
+  The above function should be called as add(1)(2)(3)
+*/
